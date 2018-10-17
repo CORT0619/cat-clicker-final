@@ -75,7 +75,13 @@
         catImg.src = 'imgs/cat' + i + '.jpg';
         catImg.alt = 'Cat #' + i;
         catImg.setAttribute('class', 'cat');
-        console.log('catImage ', catImg);
+
+        // add eventListener for new image
+        catImg.addEventListener('click', function() {
+          count++;
+          text.textContent = count;
+        });
+
         img.appendChild(catImg);
       });
       fragment.appendChild(listItem);      
