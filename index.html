@@ -68,15 +68,25 @@
     const catNameContainer = document.querySelector('.catName');
     const list = document.querySelector('.catLinks ul');
     const text = document.querySelector('#timesClicked');
-    let count = 0;
+    // let count = 0;
     const fragment = document.createDocumentFragment();
     const img = document.querySelector('#catImg');
 
     for (let i = 1; i <= numOfCats; i++) {
+      let count = 0;
+
+      // create the list items
       let listItem = document.createElement('li');
       listItem.textContent = catNames[i - 1];
+
+      // create an event listener for each list item
       listItem.addEventListener('click', function() {
-        img.innerHTML = '';
+        img.innerHTML = ''; // removes the image
+
+        // reset counter text
+        text.textContent = 0;
+
+        // creates a new image
         let catImg = document.createElement('img');
         catImg.src = 'imgs/cat' + i + '.jpg';
         catImg.alt = 'Cat #' + i;
@@ -86,10 +96,12 @@
         catNameContainer.textContent = catNames[i - 1];
 
         // add eventListener for new image
-        catImg.addEventListener('click', function() {
-          count++;
-          text.textContent = count;
-        });
+        catImg.addEventListener('click', (function(imgCount) {
+          return function() {
+            imgCount++;
+            text.textContent = imgCount;
+          }
+        })(count));
 
         img.appendChild(catImg);
       });
