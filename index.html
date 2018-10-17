@@ -31,6 +31,7 @@
       width: 500px;
       display: flex;
       margin: 0 auto;
+      flex-direction: column;
     }
 
     img.cat {
@@ -38,6 +39,10 @@
     }
 
     #clickCounter {
+      text-align: center;
+    }
+
+    p.catName {
       text-align: center;
     }
   </style>
@@ -60,6 +65,7 @@
   <script type="text/javascript">
     const numOfCats = 5;
     const catNames = ['Julian', 'Bobby', 'Pearl', 'Jamie', 'Penelope'];
+    const catNameContainer = document.querySelector('.catName');
     const list = document.querySelector('.catLinks ul');
     const text = document.querySelector('#timesClicked');
     let count = 0;
@@ -75,6 +81,9 @@
         catImg.src = 'imgs/cat' + i + '.jpg';
         catImg.alt = 'Cat #' + i;
         catImg.setAttribute('class', 'cat');
+
+        // add cat name
+        catNameContainer.textContent = catNames[i - 1];
 
         // add eventListener for new image
         catImg.addEventListener('click', function() {
