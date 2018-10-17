@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cat Clicker</title>
+  <style>
+    .wrapper {
+      display: flex;
+      padding-left: 50px;
+    }
+
+    .catLinks {
+      width: 150px;
+      text-align: center;
+      border: 1px solid darkgray;
+    }
+
+    .catLinks > ul {
+      list-style-type: none;
+      padding: 0;
+    } 
+
+    .catLinks > ul li:hover {
+      cursor: pointer;
+    }
+
+    .catGallery {
+      border: 1px solid darkgray;
+      width: 500px;
+      display: flex;
+      margin: 0 auto;
+    }
+
+    img.cat {
+      width: 500px;
+    }
+
+    #clickCounter {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="catLinks">
+      <p>Cats</p>
+      <ul></ul>
+    </div>
+    <div class="catGallery">
+      <p id="catImg"><!-- Cat Image Goes here--></p>
+      <p class="catName"></p>
+    </div>
+  </div>
+  <p id="clickCounter">
+    <span>Number of times clicked:</span>
+    <span id="timesClicked">0</span>
+  </p>
+  <script type="text/javascript">
+    const numOfCats = 5;
+    const catNames = ['Julian', 'Bobby', 'Pearl', 'Jamie', 'Penelope'];
+    const list = document.querySelector('.catLinks ul');
+    const text = document.querySelector('#timesClicked');
+    let count = 0;
+    const fragment = document.createDocumentFragment();
+    const img = document.querySelector('#catImg');
+
+    for (let i = 1; i <= numOfCats; i++) {
+      let listItem = document.createElement('li');
+      listItem.textContent = catNames[i - 1];
+      listItem.addEventListener('click', function() {
+        img.innerHTML = '';
+        let catImg = document.createElement('img');
+        catImg.src = 'imgs/cat' + i + '.jpg';
+        catImg.alt = 'Cat #' + i;
+        catImg.setAttribute('class', 'cat');
+        console.log('catImage ', catImg);
+        img.appendChild(catImg);
+      });
+      fragment.appendChild(listItem);      
+    }
+    list.appendChild(fragment);
+  </script>
+</body>
+</html>
