@@ -36,6 +36,11 @@
 
     img.cat {
       width: 500px;
+      visibility: hidden;
+    }
+
+    img.cat:hover {
+      cursor: pointer;
     }
 
     #clickCounter {
@@ -54,7 +59,9 @@
       <ul></ul>
     </div>
     <div class="catGallery">
-      <p id="catImg"><!-- Cat Image Goes here--></p>
+      <p id="catImg">
+        <img src="" alt="cats" class="cat">
+      </p>
       <p class="catName"></p>
     </div>
   </div>
@@ -62,52 +69,6 @@
     <span>Number of times clicked:</span>
     <span id="timesClicked">0</span>
   </p>
-  <script type="text/javascript">
-    const numOfCats = 5;
-    const catNames = ['Julian', 'Bobby', 'Pearl', 'Jamie', 'Penelope'];
-    const catNameContainer = document.querySelector('.catName');
-    const list = document.querySelector('.catLinks ul');
-    const text = document.querySelector('#timesClicked');
-    // let count = 0;
-    const fragment = document.createDocumentFragment();
-    const img = document.querySelector('#catImg');
-
-    for (let i = 1; i <= numOfCats; i++) {
-      let count = 0;
-
-      // create the list items
-      let listItem = document.createElement('li');
-      listItem.textContent = catNames[i - 1];
-
-      // create an event listener for each list item
-      listItem.addEventListener('click', function() {
-        img.innerHTML = ''; // removes the image
-
-        // reset counter text
-        text.textContent = 0;
-
-        // creates a new image
-        let catImg = document.createElement('img');
-        catImg.src = 'imgs/cat' + i + '.jpg';
-        catImg.alt = 'Cat #' + i;
-        catImg.setAttribute('class', 'cat');
-
-        // add cat name
-        catNameContainer.textContent = catNames[i - 1];
-
-        // add eventListener for new image
-        catImg.addEventListener('click', (function(imgCount) {
-          return function() {
-            imgCount++;
-            text.textContent = imgCount;
-          }
-        })(count));
-
-        img.appendChild(catImg);
-      });
-      fragment.appendChild(listItem);      
-    }
-    list.appendChild(fragment);
-  </script>
+  <script src="scripts/app.js" type="text/javascript"></script>
 </body>
 </html>
