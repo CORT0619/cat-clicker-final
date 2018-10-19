@@ -50,6 +50,17 @@
     p.catName {
       text-align: center;
     }
+
+    .admin {
+      display: flex;
+      width: 500px;
+      justify-content: space-around;
+      margin: 100px auto;
+      align-items: center;
+    }
+    .admin .tools {
+      visibility: hidden;
+    }
   </style>
 </head>
 <body>
@@ -69,6 +80,19 @@
     <span>Number of times clicked:</span>
     <span id="timesClicked">0</span>
   </p>
+
+  <div class="admin">
+    <button onClick="view1.showAdmin()">Admin</button>
+    <div class="tools">
+      <form>
+        <p>Name: <input type="text" name="catName"></p>
+        <p>ImgUrl: <input type="text" name="catUrl"></p>
+        <p># of Clicks: <input type="text" name="catClicks"></p>
+        <button onclick="view1.clearInputs(event)">Cancel</button>
+        <button onclick="view1.save(event)">Save</button>
+      </form>
+    </div>
+  </div>
   <script src="scripts/app.js" type="text/javascript"></script>
 </body>
 </html>
