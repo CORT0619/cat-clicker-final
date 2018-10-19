@@ -36,22 +36,26 @@ let model = {
 let view1 = {
   init: function() {
     this.adminEnabled = false;
+    const catImg = document.querySelector('#catImg img');
+    const self = this;
+    const currentCat = octopus.getCurrCatData();
+
+
+    catImg.addEventListener('click', (function(cat) {
+      return function() {
+        cat.numClicks++;
+        self.updateClickCounter(cat);
+      };
+    })(currentCat));
+    this.render(currentCat);
   },
   render: function(curr) {
-    const self = this;
     const catImg = document.querySelector('#catImg img');
 
     catImg.src = 'imgs/' + curr.src;
     catImg.setAttribute('data-cat', curr);
     catImg.style.visibility = 'visible';
     this.updateClickCounter(curr);
-
-    catImg.addEventListener('click', (function(clickCount) {
-      return function() {
-        curr.numClicks++;
-        self.updateClickCounter(curr);
-      };
-    })(curr.numClicks));
 
     // update name of the cat
     this.updateText(curr);
