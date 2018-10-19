@@ -43,6 +43,7 @@ let view1 = {
 
     catImg.addEventListener('click', (function(cat) {
       return function() {
+        console.log('cat ', cat);
         cat.numClicks++;
         self.updateClickCounter(cat);
       };
@@ -153,7 +154,7 @@ var octopus = {
     return model.data[this.getCurrentCat()].src = url;
   },
   setClicks: function(clicks) {
-    return model.data[this.getCurrentCat()].numClicks = clicks;
+    return model.data[this.getCurrentCat()].numClicks = parseInt(clicks);
   }
 };
 
